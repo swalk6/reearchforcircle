@@ -6,8 +6,11 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 
 jobs:
-  - deploy-stuff
-      - echo 'tutti fruitty'
+  deploy-stuff:
+    docker:
+      - image: circleci/node:4.8.2
+    steps:
+      - run: echo "hello dude"
 
 # Orchestrate or schedule a set of jobs
 workflows:
@@ -20,6 +23,6 @@ workflows:
           type: approval      
           requires: 
             - welcome/run
-      - deploy-stuff
-          requires:
-            - hold
+      - deploy-stuff:
+         requires:
+           - hold
