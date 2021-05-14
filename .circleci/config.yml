@@ -24,17 +24,17 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
-      - hold:
+      - hold1:
           type: approval      
           requires: 
             - welcome/run
       - deploy-stuff:
          requires:
-           - hold
-      - hold:
+           - hold1
+      - hold2:
           type: approval
           requires:
             - deploy-stuff
-      - another-job
+      - another-job:
           requires: 
-            - hold
+            - hold2
