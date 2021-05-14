@@ -11,6 +11,11 @@ jobs:
       - image: circleci/node:4.8.2
     steps:
       - run: echo "hello dude"
+  another-job:
+    docker:
+      - image: circleci/node:4.8.2
+    steps:
+      - run: echo "hello again"
 
 # Orchestrate or schedule a set of jobs
 workflows:
@@ -26,3 +31,10 @@ workflows:
       - deploy-stuff:
          requires:
            - hold
+      - hold:
+          type: approval
+          requires:
+            - deploy-stuff
+      - another-job
+          requires: 
+            - hold
