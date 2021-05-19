@@ -10,7 +10,8 @@ jobs:
     docker:
       - image: circleci/node:4.8.2
     steps:
-      - run: echo "hello dude"
+      - run: echo "fail dude"
+      - run: exit 1
   another-job:
     docker:
       - image: circleci/node:4.8.2
